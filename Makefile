@@ -1,4 +1,4 @@
-JS      = uglifyjs --compress --mangle --reserved window --comments
+JS      = uglifyjs --compress --mangle --reserved window "--comments=/Free software under/"
 JSLINT  = jslint
 
 help:
@@ -7,9 +7,11 @@ help:
 clean:
 	rm -f *.min.js
 
-all:	$(patsubst %.js,%.min.js,$(wildcard *.js))
+all:	clean $(patsubst %.js,%.min.js,$(wildcard *.js))
 
 %.min.js:	%.js
 	$(JS) -o $@ -- $<
+
+%.min.min.js:
 
 .PHONY: help all clean
